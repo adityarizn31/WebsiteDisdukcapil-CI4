@@ -24,6 +24,9 @@
           <a class="nav-link text-white" aria-current="page" href="/PelayananSilancar/">Pelayanan Si Lancar</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" href="/lacak-permohonan">Lacak Permohonan</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white" aria-current="page" href="/Admin/">Admin</a>
         </li>
 

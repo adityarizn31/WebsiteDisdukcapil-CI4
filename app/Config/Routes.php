@@ -32,6 +32,8 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Beranda::index');
+$routes->get('lacak-permohonan', 'StatusPermohonan::index');
+$routes->post('lacak-permohonan/cari', 'StatusPermohonan::cari');
 
 
 // Routes untuk Halaman Admin

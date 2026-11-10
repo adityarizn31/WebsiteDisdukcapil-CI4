@@ -37,6 +37,16 @@
   </header>
 
   <main>
+    <?php if ($trackingCode = session()->getFlashdata('tracking_code')) : ?>
+      <div class="container pt-3">
+        <div class="alert alert-success mb-0" role="status">
+          <strong>Permohonan berhasil dikirim.</strong>
+          Simpan kode pelacakan ini: <code><?= esc($trackingCode); ?></code>.
+          <a href="/lacak-permohonan" class="alert-link">Lacak status permohonan</a>.
+        </div>
+      </div>
+    <?php endif; ?>
+
     <!-- Bagian ini akan mencetak sebuah section yang diambil dari halaman -->
     <?= $this->renderSection('content'); ?>
   </main>

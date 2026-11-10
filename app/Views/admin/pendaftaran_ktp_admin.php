@@ -18,6 +18,7 @@
     </div>
 
     <form action="" method="post">
+      <?= csrf_field(); ?>
       <div class="col-6">
         <div class="input-group mb-3 mt-3 ms-3">
           <input type="text" class="form-control" placeholder="Masukan Nama ..." name="keyword">

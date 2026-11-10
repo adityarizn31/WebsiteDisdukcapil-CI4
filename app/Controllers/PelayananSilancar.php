@@ -198,7 +198,7 @@ class PelayananSilancar extends BaseController
     $namaSuratPindah_KK = $berkasSuratPindah_KK->getName();
     $berkasSuratPindah_KK->move('pelayanan/kk', $namaSuratPindah_KK);
 
-    $this->kkModel->save([
+    $this->saveTrackedApplication($this->kkModel, 'pendaftaran_kk', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -297,7 +297,7 @@ class PelayananSilancar extends BaseController
     $namaAktaPerceraian_KKPerceraian = $berkasAktaPerceraian_KKPerceraian->getName();
     $berkasAktaPerceraian_KKPerceraian->move('pelayanan/kkperceraian', $namaAktaPerceraian_KKPerceraian);
 
-    $this->kkperceraianModel->save([
+    $this->saveTrackedApplication($this->kkperceraianModel, 'pendaftaran_kk_perceraian', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -416,7 +416,7 @@ class PelayananSilancar extends BaseController
     }
 
 
-    $this->kiaModel->save([
+    $this->saveTrackedApplication($this->kiaModel, 'pendaftaran_kia', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -569,7 +569,7 @@ class PelayananSilancar extends BaseController
     $namaKTPIstri_Perpindahan = $berkasKTPIstri_Perpindahan->getName();
     $berkasKTPIstri_Perpindahan->move('pelayanan/perpindahan', $namaKTPIstri_Perpindahan);
 
-    $this->suratperpindahanModel->save([
+    $this->saveTrackedApplication($this->suratperpindahanModel, 'pendaftaran_suratperpindahan', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -673,7 +673,7 @@ class PelayananSilancar extends BaseController
     $namaKartuTandaPenduduk_Perpindahan = $berkasKartuTandaPenduduk_Perpindahan->getName();
     $berkasKartuTandaPenduduk_Perpindahan->move('pelayanan/perpindahan_luar', $namaKartuTandaPenduduk_Perpindahan);
 
-    $this->suratperpindahanluarModel->save([
+    $this->saveTrackedApplication($this->suratperpindahanluarModel, 'pendaftaran_suratperpindahanluar', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -833,7 +833,7 @@ class PelayananSilancar extends BaseController
     $namaKTPIbu_Akla = $berkasKTPIbu_Akla->getName();
     $berkasKTPIbu_Akla->move('pelayanan/aktakelahiran', $namaKTPIbu_Akla);
 
-    $this->aktakelahiranModel->save([
+    $this->saveTrackedApplication($this->aktakelahiranModel, 'pendaftaran_aktakelahiran', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -945,7 +945,7 @@ class PelayananSilancar extends BaseController
     $namaSuratKematian_Akket = $berkasSuratKematian_Akket->getName();
     $berkasSuratKematian_Akket->move('pelayanan/aktakematian', $namaSuratKematian_Akket);
 
-    $this->aktakematianModel->save([
+    $this->saveTrackedApplication($this->aktakematianModel, 'pendaftaran_aktakematian', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -1052,7 +1052,7 @@ class PelayananSilancar extends BaseController
     $namaKartuTandaPenduduk_Akla = $berkasKartuTandaPenduduk_Akla->getName();
     $berkasKartuTandaPenduduk_Akla->move('pelayanan/keabsahanaktakelahiran', $namaAktaKelahiran_Akla);
 
-    $this->keabsahanaklaModel->save([
+    $this->saveTrackedApplication($this->keabsahanaklaModel, 'pendaftaran_keabsahanakla', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -1280,7 +1280,7 @@ class PelayananSilancar extends BaseController
     $namaBerkasPelayanan10 = $berkasPelayanan10->getName();
     $berkasPelayanan10->move('pelayanan/pelayanandata', $namaBerkasPelayanan10);
 
-    $this->pelayanandataModel->save([
+    $this->saveTrackedApplication($this->pelayanandataModel, 'pendaftaran_pelayanandata', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -1465,7 +1465,7 @@ class PelayananSilancar extends BaseController
     $namaBerkasPerbaikan6 = $berkasPerbaikan6->getName();
     $berkasPerbaikan6->move('pelayanan/perbaikan_data', $namaBerkasPerbaikan6);
 
-    $this->perbaikandataModel->save([
+    $this->saveTrackedApplication($this->perbaikandataModel, 'perbaikan_data', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -1583,7 +1583,7 @@ class PelayananSilancar extends BaseController
     $namaKK_PengUp = $berkasKK_Pengup->getName();
     $berkasKK_Pengup->move('pelayanan/pengaduan_update', $namaKK_PengUp);
 
-    $this->pengaduanupdateModel->save([
+    $this->saveTrackedApplication($this->pengaduanupdateModel, 'pengaduan_update', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),

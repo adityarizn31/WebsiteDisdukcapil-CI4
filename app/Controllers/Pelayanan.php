@@ -273,7 +273,7 @@ class Pelayanan extends BaseController
     $namaSuratPindah_KK = $berkasSuratPindah_KK->getName();
     $berkasSuratPindah_KK->move('pelayanan/kk', $namaSuratPindah_KK);
 
-    $this->kkModel->save([
+    $this->saveTrackedApplication($this->kkModel, 'pendaftaran_kk', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -409,7 +409,7 @@ class Pelayanan extends BaseController
     $berkasPasFoto_KIA->move('pelayanan/kia');
 
 
-    $this->kiaModel->save([
+    $this->saveTrackedApplication($this->kiaModel, 'pendaftaran_kia', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -572,7 +572,7 @@ class Pelayanan extends BaseController
     $namaKTPIbu_Akla = $berkasKTPIbu_Akla->getName();
     $berkasKTPIbu_Akla->move('pelayanan/aktakelahiran', $namaKTPIbu_Akla);
 
-    $this->aktakelahiranModel->save([
+    $this->saveTrackedApplication($this->aktakelahiranModel, 'pendaftaran_aktakelahiran', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -694,7 +694,7 @@ class Pelayanan extends BaseController
     $namaSuratKematian_Akket = $berkasSuratKematian_Akket->getName();
     $berkasSuratKematian_Akket->move('pelayanan/aktakematian', $namaSuratKematian_Akket);
 
-    $this->aktakematianModel->save([
+    $this->saveTrackedApplication($this->aktakematianModel, 'pendaftaran_aktakematian', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -822,7 +822,7 @@ class Pelayanan extends BaseController
     $namaBerkasPerbaikan3 = $berkasPerbaikan3->getname();
     $berkasPerbaikan3->move('pelayanan/perbaikan_data', $namaBerkasPerbaikan3);
 
-    $this->perbaikandataModel->save([
+    $this->saveTrackedApplication($this->perbaikandataModel, 'perbaikan_data', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -931,7 +931,7 @@ class Pelayanan extends BaseController
     $namaKK_PengUp = $berkasKK_Pengup->getName();
     $berkasKK_Pengup->move('pelayanan/pengaduan_update', $namaKK_PengUp);
 
-    $this->pengaduanupdateModel->save([
+    $this->saveTrackedApplication($this->pengaduanupdateModel, 'pengaduan_update', [
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
