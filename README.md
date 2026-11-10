@@ -1,63 +1,84 @@
-# CodeIgniter 4 Application Starter
+# Si Lancar — Disdukcapil Majalengka
 
-## What is CodeIgniter?
+Aplikasi layanan administrasi kependudukan online berbasis CodeIgniter 4. Aplikasi menyediakan formulir pendaftaran layanan, pengelolaan permohonan melalui halaman admin, serta fitur pelacakan status permohonan menggunakan kode unik.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+## Fitur
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- Formulir pendaftaran layanan administrasi kependudukan dan unggah dokumen persyaratan.
+- Halaman admin untuk melihat permohonan dan memperbarui status.
+- Pelacakan status publik menggunakan kode pelacakan unik; data pribadi pemohon tidak ditampilkan.
+- Proteksi CSRF pada request dan formulir.
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+## Teknologi
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+- PHP 7.3 atau lebih baru (lihat batas versi pada `composer.json`)
+- CodeIgniter 4
+- MySQL/MariaDB dengan ekstensi PHP `mysqli`
+- Composer
+- Node.js/npm hanya jika ingin mengelola aset frontend
 
-## Installation & updates
+Pastikan ekstensi PHP yang dibutuhkan CodeIgniter aktif, termasuk `intl`, `mbstring`, `json`, dan `mysqli`.
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## Instalasi lokal
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+1. Clone repository lalu masuk ke direktori proyek.
+2. Pasang dependensi PHP:
 
-## Setup
+   ```sh
+   composer install
+   ```
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+3. Buat file konfigurasi lokal dengan menyalin `env` menjadi `.env`. Isi minimal:
 
-## Important Change with index.php
+   ```ini
+   CI_ENVIRONMENT = development
+   app.baseURL = 'http://localhost:8080/'
+   database.default.hostname = localhost
+   database.default.database = nama_database
+   database.default.username = username_database
+   database.default.password = password_database
+   database.default.DBDriver = MySQLi
+   ```
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+   Buat database MySQL/MariaDB terlebih dahulu dan ganti nilai contoh dengan konfigurasi lokal. Jangan commit file `.env` atau kredensial.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+4. Jalankan migrasi untuk membuat tabel kode pelacakan:
 
-**Please** read the user guide for a better explanation of how CI4 works!
+   ```sh
+   php spark migrate
+   ```
 
-## Repository Management
+   Migrasi aplikasi saat ini membuat tabel `application_tracking`. Tabel layanan dan data awal aplikasi tetap perlu disiapkan sesuai skema database proyek.
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+5. Jalankan server pengembangan:
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+   ```sh
+   php spark serve
+   ```
 
-## Server Requirements
+6. Buka `http://localhost:8080/` di browser.
 
-PHP version 7.3 or higher is required, with the following extensions installed:
+## Menggunakan pelacakan permohonan
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+1. Pemohon mengisi dan mengirim salah satu formulir pendaftaran.
+2. Setelah berhasil, aplikasi menampilkan kode pelacakan. Pemohon perlu menyimpan kode tersebut.
+3. Buka menu **Lacak Permohonan**, masukkan kode, lalu pilih **Lacak**.
+4. Aplikasi menampilkan jenis layanan dan status terbaru tanpa membuka data identitas atau dokumen pemohon.
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+Kode hanya dibuat untuk pengajuan baru setelah migrasi dijalankan. Permohonan yang sudah ada sebelumnya tidak otomatis memperoleh kode pelacakan.
 
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+## Pengujian
+
+Jalankan tes yang tersedia dengan:
+
+```sh
+composer test
+```
+
+## Catatan deployment
+
+- Arahkan document root web server ke direktori `public/`, bukan root repository.
+- Gunakan HTTPS dan konfigurasi database/kredensial produksi melalui environment yang aman.
+- Pastikan direktori `writable/` memiliki izin tulis yang sesuai.
+- Tabel `application_tracking` menghubungkan kode acak ke ID dan jenis layanan; batasi akses database dan jangan menaruh kode pelacakan di URL publik.
+- Dokumen administrasi kependudukan mengandung data sensitif. Pastikan penyimpanan dan endpoint unduh dokumen dilindungi sebelum aplikasi digunakan untuk data nyata.
